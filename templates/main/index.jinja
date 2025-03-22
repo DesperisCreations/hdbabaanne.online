@@ -2,48 +2,89 @@
 
 {% block title %}Ana Sayfa{% endblock %}
 {% block content %}
-<div class="container mx-auto px-4">
+    <div class="container mx-auto px-4">
+        <br>
+        <h1
+            class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            Türkiyenin En Gelişmiş Yetişkin İçerik Platformu</h1>
+        <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">HD Babaanne, rafine zevk sahibi
+            kişilerin içerik bulmasına kolaylık sağlayan ve diğer platformlara göre çok daha kullanışlı olan bir
+            yetişkin içerik platformudur. Güncel videoları takipte kalmak için kayıt olabilirsiniz.</p>
+        <a href="#"
+           class="inline-flex items-left justify-left px-5 py-3 text-base font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            Kayıt Ol
+            <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"></path>
+            </svg>
+        </a><br><br>
 
-    <br>
-    <h1
-        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        Türkiyenin En Gelişmiş Yetişkin İçerik Platformu</h1>
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">HD Babaanne, rafine zevk sahibi kişilerin içerik bulmasına kolaylık sağlayan ve diğer platformlara göre çok daha kullanışlı olan bir yetişkin içerik platformudur. Güncel videoları takipte kalmak için kayıt olabilirsiniz.</p>
-    <a href="#"
-        class="inline-flex items-left justify-left px-5 py-3 text-base font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-        Kayıt Ol
-        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9" />
-        </svg>
-    </a><br><br>
+        {% for video in videos %}
+            <div
+                class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="/video/{{ video.slug }}">
+                    <div class="image">
+                        <img style="max-height: 300px !important;" class="rounded-t-lg w-full object-cover"
+                             src="{{ video.kapak_resmi.url }}" alt=""/>
 
-    {% for video in videos %}
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <a href="/video/{{video.slug}}">
-            <img style="max-height: 300px !important;" class="rounded-t-lg w-full object-cover" src="{{video.kapak_resmi.url}}" alt="" />
-        </a>
-        <div class="p-5">
-            <a href="/video/{{video.slug}}">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{video.baslik}}</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{video.aciklama}}</p>
-            <a href="/video/{{video.slug}}"
-                class="inline-flex items-left px-3 py-2 text-sm font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Tıkla izle
-                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-            </a>
-            <span
-                class="inline-flex items-left px-3 py-2 text-sm font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-gray-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                {{video.kategori.isim}}
-            </span>
-        </div>
-    </div><br>
-    {% endfor %}
-</div>
+                        <div class="details">
+                            <h2><i class="fa fa-eye" aria-hidden="true"></i> 100</h2>
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.duration }}</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="p-5">
+                    <a href="/video/{{ video.slug }}">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ video.baslik }}</h5>
+                    </a>
+
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ video.aciklama }}</p>
+                    <a href="/video/{{ video.slug }}"
+                       class="inline-flex items-left px-3 py-2 text-sm font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Tıkla izle
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"></path>
+                        </svg>
+                    </a>
+                    <span
+                        class="inline-flex items-left px-3 py-2 text-sm font-medium text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-gray-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ video.kategori.isim }}
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        .image {
+            position: relative;
+            width: 100%;
+        }
+
+        .details h2 {
+            background: rgb(0 0 0 / .8);
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            padding: .2em .4em;
+            font-size: .75em;
+            z-index: 20
+        }
+
+        .details span {
+            background: rgb(0 0 0 / .8);
+            position: absolute;
+            bottom: 5px;
+            left: inherit;
+            right: 5px;
+            padding: .2em .4em;
+            font-size: .75em;
+            z-index: 20
+        }
+    </style>
 {% endblock %}

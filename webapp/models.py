@@ -1,10 +1,9 @@
 from django.db import models
 from autoslug import AutoSlugField
 
-# Create your models here.
 class Kategori(models.Model):
     isim = models.CharField(max_length=15)
-    
+
     def __str__(self):
         return self.isim
 
@@ -15,9 +14,9 @@ class Video(models.Model):
     kapak_resmi = models.ImageField(upload_to='medias/')
     yuklenme_tarihi = models.DateTimeField(auto_now_add=True, verbose_name="Yüklenme Tarihi")
     slug = AutoSlugField(populate_from="baslik", unique=True, verbose_name="Slug")
-    
     kategori = models.ForeignKey(Kategori, on_delete=models.CASCADE, related_name='videolar', verbose_name='Kategori')
+    duration = "01:20"
+    #duration = models.FloatField(verbose_name="Video Süresi", blank=True, null=True)
 
-    def __str__(self):
-        return self.baslik
-        
+def __str__(self):
+    return self.baslik

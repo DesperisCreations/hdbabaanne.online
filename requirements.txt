@@ -1,3 +1,4 @@
-django
-django-autoslug
+django>=5.1.7
+django-autoslug>=1.9.9
 pillow
+ffmpeg>=1.4
